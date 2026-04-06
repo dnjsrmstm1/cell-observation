@@ -452,7 +452,7 @@ function renderS1(){
     <div class="sec-tag">학생 정보</div>
     <div class="form-grid">
       <div class="form-group"><label class="form-label">이름</label><input class="form-input" id="f_name" placeholder="홍길동" value="${sd.name}" oninput="sd.name=this.value"></div>
-      <div class="form-group"><label class="form-label">반 · 번호</label><input class="form-input" id="f_cls" placeholder="1반 15번" value="${sd.cls}" oninput="sd.cls=this.value"></div>
+      <div class="form-group"><label class="form-label">학번</label><input class="form-input" id="f_cls" placeholder="3323" value="${sd.cls}" oninput="sd.cls=this.value" maxlength="6" inputmode="numeric"></div>
     </div>
   </div>
   <div class="card">
@@ -956,52 +956,52 @@ function buildPrintHTML(s){
   const th='padding:6px 8px;border:1px solid #ddd;background:#f0ede8;font-weight:600;text-align:left';
   const td='padding:5px 8px;border:1px solid #ddd';
 
-  return `<div style="font-family:'Noto Sans KR',sans-serif;font-size:13px;color:#1a1814;padding:24px;max-width:700px;margin:0 auto;page-break-after:always">
-  <div style="font-size:17px;font-weight:700;border-bottom:2px solid #1a1814;padding-bottom:8px;margin-bottom:14px">🔬 세포 관찰 수행평가 결과지</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
-    <div style="border:1px solid #ccc;border-radius:6px;padding:8px 10px"><div style="font-size:10px;color:#888;margin-bottom:2px">이름</div><div style="font-size:15px;font-weight:700">${s.name}</div></div>
-    <div style="border:1px solid #ccc;border-radius:6px;padding:8px 10px"><div style="font-size:10px;color:#888;margin-bottom:2px">반 · 번호</div><div style="font-size:15px;font-weight:700">${s.cls}</div></div>
-    <div style="border:1px solid #ccc;border-radius:6px;padding:8px 10px"><div style="font-size:10px;color:#888;margin-bottom:2px">제출 일시</div><div style="font-size:11px;padding-top:2px">${s.submittedAt}</div></div>
+  return `<div style="font-family:'Noto Sans KR',sans-serif;font-size:11px;color:#1a1814;padding:14px 18px;width:100%;page-break-after:always">
+  <div style="font-size:14px;font-weight:700;border-bottom:2px solid #1a1814;padding-bottom:6px;margin-bottom:10px">🔬 세포 관찰 수행평가 결과지</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px">
+    <div style="border:1px solid #ccc;border-radius:4px;padding:5px 8px"><div style="font-size:9px;color:#888;margin-bottom:1px">이름</div><div style="font-size:13px;font-weight:700">${s.name}</div></div>
+    <div style="border:1px solid #ccc;border-radius:4px;padding:5px 8px"><div style="font-size:9px;color:#888;margin-bottom:1px">학번</div><div style="font-size:13px;font-weight:700">${s.cls}</div></div>
+    <div style="border:1px solid #ccc;border-radius:4px;padding:5px 8px"><div style="font-size:9px;color:#888;margin-bottom:1px">제출 일시</div><div style="font-size:10px;padding-top:1px">${s.submittedAt}</div></div>
   </div>
-  <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
-    <span style="padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;background:#fdf3e0;color:#7a4f00">사진 ${ps}/10점</span>
-    <span style="padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;background:#e8edf5;color:#2c4a7c">문항 ${qTotal}/30점</span>
-    <span style="padding:5px 14px;border-radius:20px;font-size:13px;font-weight:700;background:#e6f2eb;color:#1e5c35">합계 ${gt}/40점</span>
+  <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+    <span style="padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;background:#fdf3e0;color:#7a4f00">사진 ${ps}/10점</span>
+    <span style="padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;background:#e8edf5;color:#2c4a7c">문항 ${qTotal}/30점</span>
+    <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:#e6f2eb;color:#1e5c35">합계 ${gt}/40점</span>
   </div>
-  <div style="font-size:10px;font-weight:700;color:#888;margin:10px 0 6px;padding-top:8px;border-top:1px solid #eee">관찰 사진</div>
+  <div style="font-size:9px;font-weight:700;color:#888;margin:6px 0 4px;padding-top:6px;border-top:1px solid #eee">관찰 사진</div>
   ${(()=>{
     const imgs=[];
     for(let i=1;i<=6;i++){if(s[`photo${i}`])imgs.push(s[`photo${i}`]);}
-    if(imgs.length===0) return `<div style="font-size:12px;color:#999;margin-bottom:10px">사진 없음</div>`;
-    return `<div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px">${imgs.map(u=>`<img src="${u}" style="width:110px;height:110px;object-fit:cover;border:1px solid #ccc;border-radius:6px">`).join('')}</div>`;
+    if(imgs.length===0) return `<div style="font-size:10px;color:#999;margin-bottom:6px">사진 없음</div>`;
+    return `<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px">${imgs.map(u=>`<img src="${u}" style="width:80px;height:80px;object-fit:cover;border:1px solid #ccc;border-radius:4px">`).join('')}</div>`;
   })()}
-  <div style="font-size:10px;font-weight:700;color:#888;margin:10px 0 6px;border-top:1px solid #eee;padding-top:8px">Q1 · OX 선택형 (각 2점)</div>
-  <table style="width:100%;border-collapse:collapse;margin-bottom:10px;font-size:12px">
+  <div style="font-size:9px;font-weight:700;color:#888;margin:6px 0 4px;border-top:1px solid #eee;padding-top:6px">Q1 · OX 선택형 (각 2점)</div>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:6px;font-size:10px">
     <tr><th style="${th}">문항</th><th style="${th}">학생 답</th><th style="${th}">정답</th><th style="${th}">정오</th><th style="${th}">점수</th></tr>
     ${oxRows}
   </table>
-  <div style="font-size:10px;font-weight:700;color:#888;margin:10px 0 6px;border-top:1px solid #eee;padding-top:8px">Q2 · 생물의 구성 단계</div>
-  <table style="width:100%;border-collapse:collapse;margin-bottom:6px;font-size:12px">
-    <tr><th style="${th};width:38%">문항</th><th style="${th}">학생 답</th><th style="${th}">정답</th><th style="${th}">정오</th><th style="${th}">점수</th></tr>
+  <div style="font-size:9px;font-weight:700;color:#888;margin:6px 0 4px;border-top:1px solid #eee;padding-top:6px">Q2 · 생물의 구성 단계</div>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:4px;font-size:10px">
+    <tr><th style="${th};width:36%">문항</th><th style="${th}">학생 답</th><th style="${th}">정답</th><th style="${th}">정오</th><th style="${th}">점수</th></tr>
     <tr><td style="${td}">Q2-가 ㄱ</td><td style="${td};text-align:center">${s.q2a||'-'}</td><td style="${td};text-align:center">기관</td><td style="${td};text-align:center;color:${q2aOk?'#1e5c35':'#8b2020'}">${q2aOk?'○':'✗'}</td><td style="${td};text-align:center">${q2aOk?2:0}</td></tr>
     <tr><td style="${td}">Q2-가 ㄴ</td><td style="${td};text-align:center">${s.q2b||'-'}</td><td style="${td};text-align:center">개체</td><td style="${td};text-align:center;color:${q2bOk?'#1e5c35':'#8b2020'}">${q2bOk?'○':'✗'}</td><td style="${td};text-align:center">${q2bOk?2:0}</td></tr>
     <tr><td style="${td}">Q2-다 · 동물에만 있는 단계</td><td style="${td};text-align:center">${s.q2c||'-'}</td><td style="${td};text-align:center">기관계</td><td style="${td};text-align:center;color:${q2cOk?'#1e5c35':'#8b2020'}">${q2cOk?'○':'✗'}</td><td style="${td};text-align:center">${q2cOk?2:0}</td></tr>
   </table>
-  <div style="font-size:11px;color:#555;margin-bottom:3px">Q2-나 · 서답형 · 교사 채점: <strong>${q2d!=null?q2d:'미채점'}/4점</strong></div>
-  <div style="background:#f7f5f0;border:1px solid #ddd;border-radius:6px;padding:8px 10px;font-size:13px;line-height:1.7;min-height:36px;margin-bottom:10px">${s.q2d||'(미작성)'}</div>
-  <div style="font-size:10px;font-weight:700;color:#888;margin:10px 0 6px;border-top:1px solid #eee;padding-top:8px">Q3 · 세포의 구조</div>
-  <table style="width:100%;border-collapse:collapse;margin-bottom:6px;font-size:12px">
-    <tr><th style="${th};width:38%">문항</th><th style="${th}">학생 답</th><th style="${th}">정답</th><th style="${th}">정오</th><th style="${th}">점수</th></tr>
+  <div style="font-size:10px;color:#555;margin-bottom:2px">Q2-나 · 서답형 · 교사 채점: <strong>${q2d!=null?q2d:'미채점'}/4점</strong></div>
+  <div style="background:#f7f5f0;border:1px solid #ddd;border-radius:4px;padding:5px 8px;font-size:10px;line-height:1.5;min-height:24px;margin-bottom:6px">${s.q2d||'(미작성)'}</div>
+  <div style="font-size:9px;font-weight:700;color:#888;margin:6px 0 4px;border-top:1px solid #eee;padding-top:6px">Q3 · 세포의 구조</div>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:4px;font-size:10px">
+    <tr><th style="${th};width:36%">문항</th><th style="${th}">학생 답</th><th style="${th}">정답</th><th style="${th}">정오</th><th style="${th}">점수</th></tr>
     <tr><td style="${td}">Q3-가 · 세포 구조물 명칭</td><td style="${td};text-align:center">${s.q3a!=null?['①','②','③','④','⑤'][Number(s.q3a)]:'미선택'}</td><td style="${td};text-align:center">②</td><td style="${td};text-align:center;color:${q3aOk?'#1e5c35':'#8b2020'}">${q3aOk?'○':'✗'}</td><td style="${td};text-align:center">${q3aOk?4:0}</td></tr>
   </table>
-  <div style="font-size:11px;color:#555;margin-bottom:3px">Q3-나 · 식물 전용 구조물 · 교사 채점: <strong>${q3b!=null?q3b:'미채점'}/4점</strong></div>
-  <div style="background:#f7f5f0;border:1px solid #ddd;border-radius:6px;padding:8px 10px;font-size:13px;line-height:1.7;min-height:32px;margin-bottom:6px">${s.q3b||'(미입력)'}</div>
-  <div style="font-size:11px;color:#555;margin-bottom:3px">Q3-다 · 핵의 역할 서답형 · 교사 채점: <strong>${q3c!=null?q3c:'미채점'}/2점</strong></div>
-  <div style="background:#f7f5f0;border:1px solid #ddd;border-radius:6px;padding:8px 10px;font-size:13px;line-height:1.7;min-height:32px;margin-bottom:16px">${s.q3c||'(미작성)'}</div>
-  <div style="margin-top:20px;padding-top:14px;border-top:2px solid #1a1814;display:flex;justify-content:space-between;align-items:flex-end">
-    <div style="text-align:center;width:155px"><div style="font-size:11px;color:#666;margin-bottom:34px">학생 서명</div><div style="border-top:1px solid #1a1814;padding-top:4px;font-size:11px;color:#888">${s.name} (서명)</div></div>
-    <div style="text-align:center;width:155px"><div style="font-size:11px;color:#666;margin-bottom:34px">교사 확인</div><div style="border-top:1px solid #1a1814;padding-top:4px;font-size:11px;color:#888">담당 교사 (서명)</div></div>
-    <div style="text-align:right"><div style="font-size:11px;color:#666;margin-bottom:6px">최종 점수</div><div style="font-size:26px;font-weight:700;color:#2c4a7c">${gt}<span style="font-size:13px;font-weight:400"> / 40점</span></div></div>
+  <div style="font-size:10px;color:#555;margin-bottom:2px">Q3-나 · 식물 전용 구조물 · 교사 채점: <strong>${q3b!=null?q3b:'미채점'}/4점</strong></div>
+  <div style="background:#f7f5f0;border:1px solid #ddd;border-radius:4px;padding:5px 8px;font-size:10px;line-height:1.5;min-height:22px;margin-bottom:4px">${s.q3b||'(미입력)'}</div>
+  <div style="font-size:10px;color:#555;margin-bottom:2px">Q3-다 · 핵의 역할 서답형 · 교사 채점: <strong>${q3c!=null?q3c:'미채점'}/2점</strong></div>
+  <div style="background:#f7f5f0;border:1px solid #ddd;border-radius:4px;padding:5px 8px;font-size:10px;line-height:1.5;min-height:22px;margin-bottom:10px">${s.q3c||'(미작성)'}</div>
+  <div style="margin-top:10px;padding-top:10px;border-top:2px solid #1a1814;display:flex;justify-content:space-between;align-items:flex-end">
+    <div style="text-align:center;width:140px"><div style="font-size:10px;color:#666;margin-bottom:28px">학생 서명</div><div style="border-top:1px solid #1a1814;padding-top:3px;font-size:10px;color:#888">${s.name} (서명)</div></div>
+    <div style="text-align:center;width:140px"><div style="font-size:10px;color:#666;margin-bottom:28px">교사 확인</div><div style="border-top:1px solid #1a1814;padding-top:3px;font-size:10px;color:#888">담당 교사 (서명)</div></div>
+    <div style="text-align:right"><div style="font-size:10px;color:#666;margin-bottom:4px">최종 점수</div><div style="font-size:24px;font-weight:700;color:#2c4a7c">${gt}<span style="font-size:12px;font-weight:400"> / 40점</span></div></div>
   </div>
 </div>`;
 }
@@ -1014,7 +1014,15 @@ function doPrint(bodyHtml){
   doc.open();
   doc.write(`<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>*{box-sizing:border-box}body{margin:0;padding:0;font-family:'Noto Sans KR',sans-serif}@media print{.print-page{page-break-after:always}}</style>
+    <style>
+      *{box-sizing:border-box}
+      body{margin:0;padding:0;font-family:'Noto Sans KR',sans-serif}
+      @page{size:A4 portrait;margin:8mm 10mm}
+      @media print{
+        html,body{width:210mm;height:297mm}
+        .print-page,div[style*="page-break-after"]{page-break-after:always;width:100%}
+      }
+    </style>
     </head><body>${bodyHtml}</body></html>`);
   doc.close();
   iframe.onload=()=>{
